@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#fffdf9">
+<title>Dashboard — EminentCloud</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="app-shell">
+  <div class="mobile-backdrop" id="backdrop"></div>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-head">
+      <a href="index.html" class="brand">
+        <span class="brand-mark" aria-hidden="true"></span>
+        EminentCloud
+      </a>
+      <button class="icon-btn mobile-only" id="closeSidebar" aria-label="Close menu">✕</button>
+    </div>
+
+    <nav class="side-nav" aria-label="Dashboard">
+      <button class="nav-item active" data-view="overview"><span class="nav-ico">⌂</span>Overview</button>
+      <button class="nav-item" data-view="automations"><span class="nav-ico">✦</span>Automations</button>
+      <button class="nav-item" data-view="activity"><span class="nav-ico">◌</span>Activity</button>
+      <button class="nav-item" data-view="connections"><span class="nav-ico">◎</span>Connections</button>
+      <div class="nav-section">WORKSPACE</div>
+      <button class="nav-item" data-view="settings"><span class="nav-ico">⚙</span>Settings</button>
+      <button class="nav-item" data-view="help"><span class="nav-ico">?</span>Help</button>
+    </nav>
+
+    <div class="sidebar-foot">Logged in as<br><strong id="sidebarEmail">your Instagram account</strong></div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <button class="icon-btn mobile-only" id="openSidebar" aria-label="Open menu">☰</button>
+      <div class="crumbs" id="pageCrumb">Overview</div>
+      <span class="status-pill pending" id="topStatusPill"><span class="status-dot"></span> Not connected</span>
+    </header>
+
+    <section class="content">
+
+      <!-- OVERVIEW -->
+      <div class="page" id="view-overview">
+        <div class="page-head">
+          <div>
+            <h1>Welcome back 👋</h1>
+            <p>Here's a quick look at your EminentCloud setup.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-row">
+            <div class="card-row-text"><h3>Instagram connection</h3><p id="overviewConnectionText">Not connected yet</p></div>
+            <button class="btn btn-ghost" onclick="switchView('connections')">Manage</button>
+          </div>
+          <div class="card-row">
+            <div class="card-row-text"><h3>Comment auto-reply</h3><p id="overviewCommentsText">Off</p></div>
+            <button class="btn btn-ghost" onclick="switchView('automations')">Edit</button>
+          </div>
+          <div class="card-row">
+            <div class="card-row-text"><h3>Follow-up DM</h3><p id="overviewDmText">Off</p></div>
+            <button class="btn btn-ghost" onclick="switchView('automations')">Edit</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- AUTOMATIONS (real, working) -->
+      <div class="page hidden" id="view-automations">
+        <div id="not-connected-view">
+          <div class="page-head">
+            <div><h1>Connect your Instagram</h1><p>One step, then you're ready to set up auto-replies.</p></div>
+          </div>
+          <div class="card empty-state">
+            <h3>No Instagram account connected yet</h3>
+            <p style="max-width:420px; margin:8px auto 22px;">Click below and log in with Instagram. You'll be asked to approve access — nothing else is needed on your side.</p>
+            <button class="btn btn-primary" onclick="connectInstagram()">Connect with Instagram</button>
+            <p class="field-hint" style="margin-top:16px;">Your account needs to be a Business or Creator account.</p>
+          </div>
+        </div>
+
+        <div id="connected-view" style="display:none;">
+          <div class="page-head">
+            <div><h1>Automations</h1><p>Manage how EminentCloud responds on your behalf.</p></div>
+            <span class="status-pill connected"><span class="status-dot"></span> <span id="connectedHandle">Connected</span></span>
+          </div>
+
+          <div class="card">
+            <div class="card-row">
+              <div class="card-row-text"><h3>Auto-reply to comments</h3><p>Reply automatically to every new comment on your posts and reels.</p></div>
+              <label class="switch"><input type="checkbox" id="toggle-comments" onchange="handleToggleChange('Auto-reply to comments')"><span class="slider"></span></label>
+            </div>
+            <div class="card-row">
+              <div class="card-row-text"><h3>Follow-up DM</h3><p>Send a direct message to anyone who leaves a comment.</p></div>
+              <label class="switch"><input type="checkbox" id="toggle-dm" onchange="handleToggleChange('Follow-up DM')"><span class="slider"></span></label>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 style="margin-bottom:4px;">Templates</h3>
+            <p style="font-size:13.5px; margin-bottom:16px;">Click one to fill in your messages below — then edit as you like.</p>
+            <div style="display:flex; flex-wrap:wrap; gap:8px;">
+              <button class="btn btn-ghost" onclick="applyTemplate('thanks')">Thanks + DM link</button>
+              <button class="btn btn-ghost" onclick="applyTemplate('faq')">FAQ auto-reply</button>
+              <button class="btn btn-ghost" onclick="applyTemplate('giveaway')">Giveaway entry</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 style="margin-bottom:16px;">Your messages</h3>
+            <div class="field">
+              <label for="reply-text">Comment reply</label>
+              <textarea id="reply-text" rows="2" placeholder="e.g. Thanks so much! 🙌 Check your DMs for more."></textarea>
+              <p class="field-hint">Sent automatically under every new comment.</p>
+            </div>
+            <div class="field">
+              <label for="dm-text">Follow-up DM</label>
+              <textarea id="dm-text" rows="3" placeholder="e.g. Hey! Thanks for the comment — here's the link you asked about."></textarea>
+              <p class="field-hint">Sent once per person, within 24 hours of their comment (Instagram's messaging rule).</p>
+            </div>
+            <button class="btn btn-primary" onclick="saveSettings()">Save changes</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ACTIVITY (real data from Firestore, populated once your webhook is live) -->
+      <div class="page hidden" id="view-activity">
+        <div class="page-head">
+          <div><h1>Activity</h1><p>A real log of comment replies and DMs EminentCloud has sent.</p></div>
+        </div>
+        <div class="card" id="activityCard">
+          <div class="empty-state" id="activityEmpty">
+            <h3>No activity yet</h3>
+            <p>Once your webhook is receiving real Instagram comments, replies and DMs will show up here.</p>
+          </div>
+          <div id="activityList"></div>
+        </div>
+      </div>
+
+      <!-- CONNECTIONS -->
+      <div class="page hidden" id="view-connections">
+        <div class="page-head">
+          <div><h1>Connections</h1><p>EminentCloud becomes the middle layer between your audience and your automations.</p></div>
+        </div>
+        <div class="card">
+          <div class="card-row">
+            <div class="card-row-text"><h3>Instagram</h3><p id="connectionsStatusText">Comments, DMs and engagement triggers.</p></div>
+            <span class="status-pill pending" id="connectionsPill"><span class="status-dot"></span> Not connected</span>
+          </div>
+        </div>
+        <button class="btn btn-primary" id="connectionsActionBtn" onclick="connectInstagram()">Connect Instagram</button>
+      </div>
+
+      <!-- SETTINGS -->
+      <div class="page hidden" id="view-settings">
+        <div class="page-head">
+          <div><h1>Settings</h1><p>Control your workspace and privacy preferences.</p></div>
+        </div>
+        <div class="card">
+          <div class="card-row"><div class="card-row-text"><h3>Workspace</h3><p>EminentCloud · Personal workspace</p></div></div>
+          <div class="card-row"><div class="card-row-text"><h3>Privacy &amp; cookie consent</h3><p>Manage your cookie preferences anytime.</p></div><button class="btn btn-ghost" onclick="reopenCookieBanner()">Manage</button></div>
+        </div>
+      </div>
+
+      <!-- HELP -->
+      <div class="page hidden" id="view-help">
+        <div class="page-head">
+          <div><h1>How can we help?</h1><p>Find answers or reach out to the EminentCloud team.</p></div>
+        </div>
+        <div class="card">
+          <div class="card-row"><div class="card-row-text"><h3>Automation guide</h3><p>Learn how comment replies and follow-up DMs work.</p></div></div>
+          <div class="card-row"><div class="card-row-text"><h3>Connection help</h3><p>Understand how the Instagram connection works.</p></div></div>
+          <div class="card-row"><div class="card-row-text"><h3>Contact support</h3><p>Send us a message and we'll help you out.</p></div></div>
+        </div>
+      </div>
+
+    </section>
+  </main>
+</div>
+
+<div class="cookie-banner" id="cookie-banner">
+  <p>We use cookies to keep you signed in and understand how EminentCloud is used. See our <a href="index.html#pricing">Privacy Policy</a> for details.</p>
+  <div class="cookie-actions">
+    <button class="btn btn-primary" onclick="acceptCookies()">Accept all</button>
+    <button class="btn btn-ghost" onclick="rejectCookies()">Reject non-essential</button>
+  </div>
+</div>
+
+<div class="toast" id="toast">Saved</div>
+
+<script src="js/dashboard.js"></script>
+<script src="js/cookie-consent.js"></script>
+</body>
+</html>

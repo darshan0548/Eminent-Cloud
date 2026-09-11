@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EminentCloud — Instagram auto-replies that never sleep</title>
+<meta name="description" content="Reply to every comment and DM automatically, connected safely through Instagram's official platform.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      EminentCloud
+    </a>
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#how-it-works">How it works</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="dashboard.html" class="btn btn-ghost">Log in</a>
+      <a href="dashboard.html" class="btn btn-primary">Connect Instagram</a>
+    </div>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" onclick="toggleMobileMenu()">
+      <span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#features">Features</a>
+    <a href="#how-it-works">How it works</a>
+    <a href="#pricing">Pricing</a>
+    <a href="dashboard.html" class="btn btn-ghost btn-block">Log in</a>
+    <a href="dashboard.html" class="btn btn-primary btn-block">Connect Instagram</a>
+  </div>
+</nav>
+
+<header class="container hero">
+  <div>
+    <span class="eyebrow">Official Instagram integration</span>
+    <h1>Never miss a comment. Never miss a <em>customer</em>.</h1>
+    <p class="hero-sub">EminentCloud replies to every comment on your reels and posts instantly, then follows up by DM automatically — connected through Instagram's own platform, no passwords shared, ever.</p>
+    <div class="hero-actions">
+      <a href="dashboard.html" class="btn btn-primary">Connect your account — it's free to start</a>
+    </div>
+    <div class="hero-note">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1L2 3.5V7.5C2 11 4.5 13.7 8 15C11.5 13.7 14 11 14 7.5V3.5L8 1Z" stroke="#5B3DE0" stroke-width="1.3"/></svg>
+      Works with your existing Instagram Business account. No coding, no API keys to manage.
+    </div>
+  </div>
+
+  <div class="demo-card" aria-hidden="true">
+    <div class="demo-card-head">
+      <span class="dot-row"><span class="dot"></span><span class="dot"></span><span class="dot"></span></span>
+      reel_042 · comments
+    </div>
+    <div class="bubble bubble-in" data-delay="0">@traveler.priya: this looks amazing 😍 where is this??</div>
+    <span class="bubble-tag" style="display:block; opacity:0; animation: rise 0.4s ease forwards; animation-delay: 0.9s;">Auto-reply sent in 0.4s</span>
+    <div class="bubble bubble-out" data-delay="1">Thank you! 🌿 It's Coorg, Karnataka — sending you the full spot list in your DMs now!</div>
+    <div class="bubble bubble-in" data-delay="2" style="margin-top:18px;">Sent to DM: "Here's the exact location + 3 nearby stays 🏡"</div>
+  </div>
+</header>
+
+<div class="trust-strip">Built on Instagram's official Graph API · No credential sharing · Meta app review compliant</div>
+
+<section class="section" id="features">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">What it does</span>
+      <h2>Everything runs in the background, automatically.</h2>
+      <p>Set your replies once. EminentCloud handles every comment and message from then on.</p>
+    </div>
+    <div class="grid-3">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M2 4h16v9H7l-3 3v-3H2V4z" stroke="currentColor" stroke-width="1.5"/></svg>
+        </div>
+        <h3>Instant comment replies</h3>
+        <p>Every comment on your posts and reels gets a reply within seconds — day or night, no one watching a screen.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 5l7 5 7-5M3 5h14v10H3V5z" stroke="currentColor" stroke-width="1.5"/></svg>
+        </div>
+        <h3>Automatic follow-up DMs</h3>
+        <p>Send a direct message to anyone who comments — a link, a discount code, or the answer to their question.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2v16M2 10h16" stroke="currentColor" stroke-width="1.5"/></svg>
+        </div>
+        <h3>Simple on/off controls</h3>
+        <p>Turn automations on or off, edit your messages, and see recent activity — all from one clean dashboard.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="how-it-works" style="background:var(--bg-soft);">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Getting started</span>
+      <h2>Four steps and you're live.</h2>
+      <p>No technical setup on your side — just connect and write your messages.</p>
+    </div>
+    <div class="steps">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Connect Instagram</h3>
+        <p>Log in with Facebook — the same way you'd log into any app. Nothing to install.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h3>Write your replies</h3>
+        <p>Add the message you want sent for comments, and a follow-up DM if you'd like one.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h3>Turn it on</h3>
+        <p>Flip the switch in your dashboard. That's the entire setup.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <h3>Watch it work</h3>
+        <p>Every new comment gets handled automatically. Check activity anytime.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="pricing">
+  <div class="container">
+    <div class="cta-band">
+      <h2>Ready to stop replying manually?</h2>
+      <p>Connect your Instagram account in under two minutes. No credit card needed to try it.</p>
+      <a href="dashboard.html" class="btn btn-primary">Connect your Instagram</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    © 2026 EminentCloud · eminentcloude.in
+  </div>
+</footer>
+
+<div class="cookie-banner" id="cookie-banner">
+  <p>We use cookies to keep you signed in and understand how EminentCloud is used. See our <a href="#">Privacy Policy</a> for details.</p>
+  <div class="cookie-actions">
+    <button class="btn btn-primary" onclick="acceptCookies()">Accept all</button>
+    <button class="btn btn-ghost" onclick="rejectCookies()">Reject non-essential</button>
+  </div>
+</div>
+
+<script src="js/main.js"></script>
+<script src="js/cookie-consent.js"></script>
+<script>
+  function toggleMobileMenu() {
+    const menu = document.getElementById('mobile-menu');
+    const btn = document.getElementById('nav-toggle');
+    const isOpen = menu.classList.toggle('open');
+    btn.classList.toggle('open', isOpen);
+    btn.setAttribute('aria-expanded', isOpen);
+  }
+</script>
+</body>
+</html>
